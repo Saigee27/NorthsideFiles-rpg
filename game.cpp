@@ -62,11 +62,11 @@ class Warrior : public Char {
         Strength=30;
     }
     void Attack(){
-        std::cout<<GetName()<<" attacks with AK47 rifle!! "<<std::endl;
+        std::cout<<GetName()<<" bursts bullets through AK47 rifle!! "<<std::endl;
         std::cout<<"Strength: "<<Strength<<std::endl;
 
+    }
 
-};
 
 int GetStrength(){
     return Strength;
@@ -79,15 +79,15 @@ class Goblin : public Char {
     private:
     int Damage;
     public: 
-    Goblin():Char("Goblin"){
+    Goblin():Char("Leech"){
         Damage=20;
     }
 
         void appear(){
-            std::cout<<"A wild Goblin appeared through the dark!"<<std::endl;
+            std::cout<<"A Flesh eating Leech appeared in through the dark!"<<std::endl;
         }
         void Attack(){
-            std::cout<<"Goblin attacks with claws!! "<<std::endl;
+            std::cout<<"Leech attacks with claws!! "<<std::endl;
         }
 
         int GetDamage(){
@@ -103,12 +103,12 @@ void Battle(Warrior & hero, Goblin & goblin){
     int b;
     while(hero.GetHealth()>0 && goblin.GetHealth()>0){
         std::cout<<"\n";
-        std::cout<<"..........DISPLAY MENU............."<<std::endl;
+        std::cout<<"......................."<<std::endl;
         std::cout<<"1. ATTACK ENEMY"<<std::endl;
         std::cout<<"2. SHOW STATS"<<std::endl;
         std::cout<<"3. EXIT"<<std::endl;
         std::cout<<"\n";
-        std::cout<<"Enter your choice: ";
+        std::cout<<"Choose one option: ";
         std::cin>>b;
         std::cout<<"\n";
 
@@ -117,9 +117,11 @@ void Battle(Warrior & hero, Goblin & goblin){
         hero.Attack();
         std::cout<<"\n";
         goblin.TakeDamage(hero.GetStrength());
-        std::cout<<"Goblin Health: "<<goblin.GetHealth()<<std::endl;
+        std::cout<<"Leech Health: "<<goblin.GetHealth()<<std::endl;
 
-        if(goblin.GetHealth()<=0){std::cout<<"Goblin is defeated!"<<std::endl;
+        if(goblin.GetHealth()<=0)
+        {std::cout<<hero.GetName()<<" tears open the face of Leach"<<std::endl;
+        std::cout<<"Leech is defeated!"<<std::endl;
         break;
         }
 
@@ -151,13 +153,19 @@ void Battle(Warrior & hero, Goblin & goblin){
     }
     }
     if(hero.GetHealth()<=0){
-        std::cout<<hero.GetName()<<" vision fades.\n";
-        std::cout<<"The darkness of the forest consumes you.\n";
-        std::cout<<hero.GetName()<<" was killed by Goblin!"<<std::endl;
+        std::cout<<"Leech gobbles up the bones of "<<hero.GetName()<<" alive..!";
+        std::cout<<hero.GetName()<<" was devoured by Leech\n";
+        std::cout<<hero.GetName()<<" was killed by Leech!"<<std::endl;
         std::cout<<"GAME OVER..."<<std::endl;
 
     }
     
+}
+
+
+void ContinueStory(){
+    std::cout<<"\nPRESS ENTER TO CONTINUE";
+    std::cin.get();
 }
 
 int main(){
@@ -175,6 +183,8 @@ int main(){
     std::cout << "=========================================\n\n";
 
     std::cout << "The year is 1987.\n\n";
+
+    ContinueStory();
 
     std::cout << "Major "<<hero.GetName()<<","<<" a decorated army officer,\n";
     std::cout << "was returning home with his wife and young\n";
@@ -212,15 +222,16 @@ int main(){
 
     std::cout << "Everything went black...\n\n";
 
-
+    ContinueStory();
 
     int firstChoice;
 
     std::cout << "What will you do?\n";
     std::cout << "1. Speak to the villager.\n";
     std::cout << "2. Rush outside and search for your family.\n";
-    std::cout << "Choice: ";
+    std::cout << "Choose one option: ";
     std::cin >> firstChoice;
+    
     switch (firstChoice)
     {
     case 1:
@@ -257,7 +268,7 @@ int main(){
     std::cout << "Pain shot through his body.\n";
     std::cout << "He ignored it.\n\n";
 
-    std::cout << "\"Sarah!\"\n";
+    std::cout << "\"Meera!\"\n";
     std::cout << "\"Anya!\"\n\n";
 
     std::cout << "Only silence answered.\n\n";
@@ -287,19 +298,15 @@ std::cout<<"Welcome in Northside."<<std::endl;
 std::cout<<"The gates of Northside creak open.\n";
 std::cout<<"Villagers move cautiously through muddy streets.\n";
 std::cout<<"The smell of wood smoke fills the cold air.\n";
-
+std::cout<<"\n";
     while(hero.GetHealth()>0){
-        std::cout<<"You enter in a village."<<std::endl;
-
-        std::cout<<"\n";
-        
+        std::cout<<"\nWhere will you go now?"<<std::endl;
         std::cout<<"\n";
         std::cout<<"1. Explore forest area near alley.."<<std::endl;
         std::cout<<"\n";
         std::cout<<"2. Rest at the campside.."<<std::endl;
         std::cout<<"\n";
         std::cout<<"choose one option: ";
-        std::cout<<"\n";
         std::cin>>p;
 
         switch (p)
