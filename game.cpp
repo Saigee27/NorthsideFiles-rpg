@@ -57,14 +57,13 @@ class Warrior : public Char {
     private:
     int Strength;
     public:
-    Warrior(std::string nu) : Char(nu){
+    Warrior(std::string n) : Char(n){
         
         Strength=30;
     }
     void Attack(){
         std::cout<<GetName()<<" bursts bullets through AK47 rifle!! "<<std::endl;
         std::cout<<"Strength: "<<Strength<<std::endl;
-
     }
 
 
@@ -82,9 +81,9 @@ class Goblin : public Char {
     Goblin():Char("Leech"){
         Damage=20;
     }
-
+        
         void appear(){
-            std::cout<<"A Flesh eating Leech appeared in through the dark!"<<std::endl;
+            std::cout<<"A flesh-eating Leech appeared in through the dark!"<<std::endl;
         }
         void Attack(){
             std::cout<<"Leech attacks with claws!! "<<std::endl;
@@ -115,12 +114,12 @@ void Battle(Warrior & hero, Goblin & goblin){
     switch(b){
         case 1:{
         hero.Attack();
-        std::cout<<"\n";
         goblin.TakeDamage(hero.GetStrength());
         std::cout<<"Leech Health: "<<goblin.GetHealth()<<std::endl;
+        std::cout<<"\n";
 
         if(goblin.GetHealth()<=0)
-        {std::cout<<hero.GetName()<<" tears open the face of Leach"<<std::endl;
+        {std::cout<<hero.GetName()<<" tears open the face of Leech"<<std::endl;
         std::cout<<"Leech is defeated!"<<std::endl;
         break;
         }
