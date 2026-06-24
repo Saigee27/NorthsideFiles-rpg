@@ -73,11 +73,24 @@ int GetStrength(){
 };
 
 
-class Leech : public Char {
+
+class Enemy : public Char {
+    public:
+    Enemy(std::string n):Char(n)
+    {
+        std::cout<<"Enemy spawned!\n";
+    }
+    virtual int GetDamage()=0;
+    virtual void Attack()=0;
+    virtual void Fatality(std::string heroName)=0;
+};
+
+
+class Leech : public Enemy {
     private:
     int Damage;
     public: 
-    Leech():Char("Leech"){
+    Leech():Enemy("Grave Leech"){
         Damage=20;
     }
         void show(){
@@ -86,7 +99,7 @@ class Leech : public Char {
             std::cout<<"Health: "<<GetHealth()<<std::endl;
         }
         void appear(){
-            std::cout<<"A flesh-eating Leech appeared in through the dark!"<<std::endl;
+            std::cout<<"A flesh-eating Grave Leech appeared in through the dark!"<<std::endl;
         }
         void Attack(){
             std::cout<<"Leech attacks with claws!! "<<std::endl;
@@ -95,15 +108,19 @@ class Leech : public Char {
         int GetDamage(){
             return Damage;
         }
+
+        void Fatality(std::string heroName){
+            std::cout<<heroName<<" tears open the mouth of Leech BUTALLY\n";
+        }
     };
 
 
 
 
 
-void Battle(Warrior & hero, Leech & leech){
+void Battle(Warrior & hero, Enemy & enemy){
     int b;
-    while(hero.GetHealth()>0 && leech.GetHealth()>0){
+    while(hero.GetHealth()>0 && enemy.GetHealth()>0){
         std::cout<<"\n";
         std::cout<<"......................."<<std::endl;
         std::cout<<"1. ATTACK ENEMY"<<std::endl;
@@ -117,20 +134,20 @@ void Battle(Warrior & hero, Leech & leech){
     switch(b){
         case 1:{
         hero.Attack();
-        leech.TakeDamage(hero.GetStrength());
-        std::cout<<"Leech Health: "<<leech.GetHealth()<<std::endl;
+        enemy.TakeDamage(hero.GetStrength());
+        std::cout<< enemy.GetName()<<" Health: "<<enemy.GetHealth()<<std::endl;
         std::cout<<"\n";
 
-        if(leech.GetHealth()<=0)
-        {std::cout<<hero.GetName()<<" tears open the mouth of Leech BRUTALLY!"<<std::endl;
-        std::cout<<"Leech is defeated!"<<std::endl;
-        std::cout<<"Battle Won Successfully!"<<std::endl;
+        if(enemy.GetHealth()<=0)
+        {enemy.Fatality(hero.GetName());
+        std::cout<<enemy.GetName()<<" is defeated!"<<std::endl;
+        std::cout<<"\nBattle Won Successfully!"<<std::endl;
         std::cout << "\n=========================================\n";
         break;
         }
 
-        leech.Attack();
-        hero.TakeDamage(leech.GetDamage());
+        enemy.Attack();
+        hero.TakeDamage(enemy.GetDamage());
         std::cout<<"Hero Health: "<<hero.GetHealth()<<std::endl;
         std::cout<<"\n";
         break;
@@ -139,7 +156,7 @@ void Battle(Warrior & hero, Leech & leech){
         case 2:{
             hero.show();
             std::cout<<"\n";
-            leech.show();
+            enemy.show();
             break;
         }
 
@@ -158,9 +175,9 @@ void Battle(Warrior & hero, Leech & leech){
     }
     }
     if(hero.GetHealth()<=0){
-        std::cout<<"Leech gobbles up the bones of "<<hero.GetName()<<" alive..!\n";
-        std::cout<<hero.GetName()<<" was devoured by Leech.\n";
-        std::cout<<hero.GetName()<<" was killed by Leech!"<<std::endl;
+        std::cout<<enemy.GetName()<<" gobbles up the bones of "<<hero.GetName()<<" alive..!\n";
+        std::cout<<hero.GetName()<<" was devoured by "<<enemy.GetName()<<std::endl;
+        std::cout<<hero.GetName()<<" was killed by "<<enemy.GetName()<<"!"<<std::endl;
         std::cout<<"GAME OVER..."<<std::endl;
         std::cout << "\n=========================================\n";
 
