@@ -52,6 +52,9 @@ void TakeDamage(int dmg){
 
 };
 
+void DaySurvived();
+void MobKilling();
+
 class Warrior : public Char {
     private:
     int Strength;
@@ -82,7 +85,7 @@ class Enemy : public Char {
     }
     virtual int GetDamage()=0;
     virtual void Attack()=0;
-    virtual void Fatality(std::string heroName)=0;
+    virtual void Fatality(std::string HeroName)=0;
 };
 
 
@@ -109,14 +112,19 @@ class Leech : public Enemy {
             return Damage;
         }
 
-        void Fatality(std::string heroName){
-            std::cout<<heroName<<" tears open the mouth of Leech BUTALLY\n";
+        void Fatality(std::string hero){
+            std::cout<<hero<<" tears open the mouth of Leech BUTALLY\n";
         }
     };
 
 
+int date=1;
 
+void DaySurvived(){
+    std::cout<<"Days survived: "<<date<<std::endl;
+}
 
+int MobCount=0;
 
 void Battle(Warrior & hero, Enemy & enemy){
     int b;
@@ -143,6 +151,7 @@ void Battle(Warrior & hero, Enemy & enemy){
         std::cout<<enemy.GetName()<<" is defeated!"<<std::endl;
         std::cout<<"\nBattle Won Successfully!"<<std::endl;
         std::cout << "\n=========================================\n";
+        MobCount++;
         break;
         }
 
@@ -180,9 +189,18 @@ void Battle(Warrior & hero, Enemy & enemy){
         std::cout<<hero.GetName()<<" was killed by "<<enemy.GetName()<<"!"<<std::endl;
         std::cout<<"GAME OVER..."<<std::endl;
         std::cout << "\n=========================================\n";
-
+        std::cout<<"Player History: \n";
+        hero.show();
+        MobKilling();
+        DaySurvived();
+        std::cout << "\n=========================================\n";
     }
     
+}
+
+
+void MobKilling(){
+    std::cout<<"Monsters finished: "<<MobCount<<std::endl;
 }
 
 
@@ -199,7 +217,6 @@ int main(){
     Warrior hero(n);
     hero.show();
     std::cout<<"\n";
-    int date=1;
     int p;
 
     std::cout << "=========================================\n";
@@ -304,12 +321,14 @@ std::cout<<"\n";
 std::cout << "=========================================\n\n";
 
     while(hero.GetHealth()>0){
-        std::cout<<"\nDay: "<<date<<std::endl;
+        std::cout<<"\nDAY: "<<date<<std::endl;
         std::cout<<"\nWhere will you go now?"<<std::endl;
         std::cout<<"\n";
         std::cout<<"1. Explore forest area near alley.."<<std::endl;
         std::cout<<"\n";
         std::cout<<"2. Rest at the campside.."<<std::endl;
+        std::cout<<"\n";
+        std::cout<<"3. Check Stats"<<std::endl;
         std::cout<<"\n";
         std::cout<<"choose one option: ";
         std::cin>>p;
@@ -362,8 +381,20 @@ std::cout << "=========================================\n\n";
             
         }
 
-        
+        case 3:
+        {
+            std::cout << "\n=========================================\n\n";
+            hero.show();
+            MobKilling();
+            DaySurvived();
+            std::cout << "\n\n=========================================\n\n";
+            break;
+        }
         default:
+        {
+            std::cout<<"Invalid request";
+            break;
+        }
         break;
         }
 
