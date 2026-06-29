@@ -4,5 +4,6 @@
 void ContinueStory();
 void Prologue(Player & hero);
 void VillageConvo(Player & hero);
+void NorthSide(Player & hero);
 
 #endif

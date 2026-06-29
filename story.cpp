@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Story.h"
 #include <iostream>
+#include "Battle.h"
+
+
 
 void ContinueStory()
 {
@@ -72,7 +75,7 @@ void VillageConvo(Player & hero)
         std::cout << hero.GetName() << "'s blood ran cold.\n";
         std::cout << "\"What do you mean she wasn't found?\"\n\n";
 
-        std::cout << "\"The elder knows more.\"\n";
+        std::cout << "\"The elder knows more.\"\n\n";
         std::cout << "=========================================\n";
         break;
     }
@@ -114,3 +117,100 @@ void VillageConvo(Player & hero)
     }
 
 }
+
+
+
+void NorthSide(Player & hero)
+{
+    int date=1;
+    int p;
+std::cout<<"\n";
+std::cout<<"Welcome in Northside."<<std::endl;
+std::cout<<"The gates of Northside creak open.\n";
+std::cout<<"Villagers move cautiously through muddy streets.\n";
+std::cout<<"The smell of wood smoke fills the cold air.\n";
+std::cout<<"\n";
+std::cout << "=========================================\n\n";
+
+    while(hero.GetHealth()>0){
+        std::cout<<"\nDAY: "<<date<<std::endl;
+        std::cout<<"\nWhere will you go now?"<<std::endl;
+        std::cout<<"\n";
+        std::cout<<"1. Explore forest area near alley.."<<std::endl;
+        std::cout<<"\n";
+        std::cout<<"2. Rest at the campside.."<<std::endl;
+        std::cout<<"\n";
+        std::cout<<"3. Check Stats"<<std::endl;
+        std::cout<<"\n";
+        std::cout<<"choose one option: ";
+        std::cin>>p;
+
+        switch (p)
+        {
+        case 1:
+        {
+            std::cout<<"\n";
+            std::cout<<hero.GetName()<<" roams around the valley.\n";
+            std::cout<<"\n";
+            
+            
+                Leech leech;
+                std::cout<<"\n";
+            if (leech.spawn()==0){
+                leech.appear();
+                std::cout<<"\n";
+                leech.show();
+                std::cout<<"\n";
+
+                Battle(hero,leech);
+                
+            }
+            
+
+            else{
+
+                std::cout<<"\n";
+                std::cout << "=========================================\n\n";
+                std::cout<<"THE FOREST AREA IS SAFE AND PEACEFUL RIGHTNOW."<<std::endl;
+                std::cout << "\n=========================================\n\n";
+                
+                
+            }
+            break;
+        }
+
+        case 2:
+        {
+            std::cout<<"\n";
+            std::cout<<hero.GetName()<<" rest in the village.\n";
+            hero.SetHealth(100);
+            date++;
+            std::cout<<"\nThe cursed night finally passes.\n";
+            
+            std::cout<<"\n";
+            std::cout<<hero.GetName()<<" feeling good with "<<hero.GetHealth()<<" health\n\n";
+            std::cout << "=========================================\n\n";
+            break;
+            
+        }
+
+        case 3:
+        {
+            std::cout << "\n=========================================\n\n";
+            hero.show();
+            MobKilling();
+            DaySurvived();
+            std::cout << "\n\n=========================================\n\n";
+            break;
+        }
+        default:
+        {
+            std::cout<<"Invalid request";
+            break;
+        }
+        break;
+        }
+
+    }
+}
+
