@@ -18,15 +18,21 @@ void Char::SetHealth(int h){
     {
         Health=0;
     }
-    else if(h>100)
-    {
-        Health=100;
-    }
+    
     else 
     {
         Health=h;
     }
-
-
-
 }
+
+void Char::show(){
+        std::cout<<"\n";
+        std::cout<<"Character Name: "<<Name<<std::endl;
+        std::cout<<"Health: "<<Health<<std::endl;
+}
+
+
+void Char::TakeDamage(int dmg){
+    SetHealth(GetHealth() - dmg);
+}
+

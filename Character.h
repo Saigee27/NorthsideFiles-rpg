@@ -11,14 +11,8 @@ class Char{
     std::string GetName();
     int GetHealth();
     void SetHealth(int h);
-    virtual void show(){
-        std::cout<<"\n";
-        std::cout<<"Character Name: "<<Name<<std::endl;
-        std::cout<<"Health: "<<Health<<std::endl;
-    }
-    void TakeDamage(int dmg){
-        SetHealth(GetHealth() - dmg);
-    }
-
+    virtual void show();
+    void TakeDamage(int dmg);
+    
 };
 #endif

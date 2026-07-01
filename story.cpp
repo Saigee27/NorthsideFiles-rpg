@@ -117,12 +117,16 @@ void VillageConvo(Player & hero)
     }
 
 }
+int date=1;
+void DaySurvived()
+{
+    std::cout<<"Days survived: "<<date<<std::endl;
+    
 
-
-
+}
 void NorthSide(Player & hero)
 {
-    int date=1;
+    
     int p;
 std::cout<<"\n";
 std::cout<<"Welcome in Northside."<<std::endl;
@@ -155,8 +159,10 @@ std::cout << "=========================================\n\n";
             
             
                 Leech leech;
+                Gorak gorak;
                 std::cout<<"\n";
-            if (leech.spawn()==0){
+            if (leech.spawn())
+            {
                 leech.appear();
                 std::cout<<"\n";
                 leech.show();
@@ -165,7 +171,17 @@ std::cout << "=========================================\n\n";
                 Battle(hero,leech);
                 
             }
+
             
+            else if(gorak.spawn())
+            {
+                gorak.appear();
+                std::cout<<"\n";
+                gorak.show();
+                std::cout<<"\n";
+
+                Battle(hero,gorak);
+            }
 
             else{
 

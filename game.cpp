@@ -13,7 +13,7 @@ int main(){
     Player hero(n);
     hero.show();
     std::cout<<"\n";
-    int p;
+    
 
     Prologue(hero);
 
