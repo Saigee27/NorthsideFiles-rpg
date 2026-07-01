@@ -1,0 +1,9 @@
+# Build outputs
+*.exe
+*.obj
+
+# Folders
+Debug/
+Release/
+x64/
+x86/
