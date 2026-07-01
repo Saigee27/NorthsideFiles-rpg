@@ -1,13 +1,8 @@
 #include "Battle.h"
+
 #include <iostream>
-int date=1;
+
 int MobCount=0;
-
-void DaySurvived(){
-    std::cout<<"Days survived: "<<date<<std::endl;
-}
-
-
 
 void MobKilling(){
     std::cout<<"Monsters finished: "<<MobCount<<std::endl;
@@ -21,7 +16,8 @@ void Battle(Player & hero, Enemy & enemy){
         std::cout<<"......................."<<std::endl;
         std::cout<<"1. ATTACK ENEMY"<<std::endl;
         std::cout<<"2. SHOW STATS"<<std::endl;
-        std::cout<<"3. EXIT"<<std::endl;
+        std::cout<<"3. CHECK BLACK ARCHIVE"<<std::endl;
+        std::cout<<"4. EXIT"<<std::endl;
         std::cout<<"\n";
         std::cout<<"Choose one option: ";
         std::cin>>b;
@@ -58,6 +54,12 @@ void Battle(Player & hero, Enemy & enemy){
         }
 
         case 3:
+        {
+            enemy.inspect();
+            break;
+        }
+
+        case 4:
         {
         std::cout<<hero.GetName()<<" ran from the ground!!"<<std::endl;
         std::cout<<"\n";

@@ -8,12 +8,14 @@ class Enemy : public Char {
     virtual int GetDamage()=0;
     virtual void Fatality(std::string Heroname)=0;
     virtual void Attack()=0;
+    virtual void inspect()=0;
 
 };
 
 class Leech : public Enemy {
     private:
     int Damage;
+    
     public:
     bool spawn();
     
@@ -22,8 +24,13 @@ class Leech : public Enemy {
     void appear();
     void Attack();
     int GetDamage();
+
+    void inspect();
+    
     void Fatality(std::string hero);
 };
+
+
 
 
 #endif
